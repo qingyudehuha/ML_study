@@ -20,7 +20,7 @@ class LinearRegression1:
     def fit(self):
         self.X = np.insert(self.X,0,1,axis=1)
         self.coef_ = np.linalg.inv(self.X.T.dot(self.X)).dot(self.X.T).dot(self.y)
-        # self.intercept_ = np.sum(self.y - self.X.dot(self.coef_))
+        # self.intercept_ = np.sum(self.y - self.X.dot(self.coef_))      # 以该种写法结果有问题
         return self.coef_
             # , self.intercept_
 
