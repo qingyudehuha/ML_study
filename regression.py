@@ -7,8 +7,10 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# 用最小二乘法实现
-class LinearRegression1:
+
+# 最小二乘法实现线性回归
+
+class LinearRegressionLSM:
 
     def __init__(self):
         X = datasets.load_boston().data
@@ -20,7 +22,7 @@ class LinearRegression1:
     def fit(self):
         self.X = np.insert(self.X,0,1,axis=1)
         self.coef_ = np.linalg.inv(self.X.T.dot(self.X)).dot(self.X.T).dot(self.y)
-        # self.intercept_ = np.sum(self.y - self.X.dot(self.coef_))      # 以该种写法结果有问题
+        # self.intercept_ = np.average(self.y) - self.coef_.dot(np.average(self.X,axis=0))
         return self.coef_
             # , self.intercept_
 
@@ -28,3 +30,8 @@ class LinearRegression1:
     def predict(self, x):
         a = self.fit().dot(x)
         return a.reshape(-1,1)
+    
+    
+    
+    
+# 用牛顿法实现
